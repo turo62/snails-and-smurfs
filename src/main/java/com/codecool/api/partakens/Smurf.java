@@ -12,4 +12,16 @@ public class Smurf {
         this.weight = weight;
         this.like = like;
     }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public int getWeight() {
+        return weight;
+    }
+    
+    public Affinity getLike() {
+        return like;
+    }
 }

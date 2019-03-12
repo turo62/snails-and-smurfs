@@ -19,4 +19,32 @@ public class Snail {
         this.field = field;
         this.raceNo = raceNo;
     }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public int getSpeed() {
+        return speed;
+    }
+    
+    public int getFatigability() {
+        return fatigability;
+    }
+    
+    public void setFatigability(int fatigability) {
+        this.fatigability = fatigability;
+    }
+    
+    public Food getFood() {
+        return food;
+    }
+    
+    public Field getField() {
+        return field;
+    }
+    
+    public int getRaceNo() {
+        return raceNo;
+    }
 }
