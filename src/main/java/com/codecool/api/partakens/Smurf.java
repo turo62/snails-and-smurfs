@@ -2,9 +2,9 @@ package com.codecool.api.partakens;
 
 public class Smurf {
     private String name;
-    private int weight;
+    private double weight;
     
-    public Smurf(String name, int weight) {
+    public Smurf(String name, double weight) {
         this.name = name;
         this.weight = weight;
     }
@@ -13,7 +13,11 @@ public class Smurf {
         return name;
     }
     
-    public int getWeight() {
+    public double getWeight() {
         return weight;
+    }
+    
+    public String toString() {
+        return "Name: " + name + ", weight: " + weight + "gr.";
     }
 }
