@@ -1,10 +1,8 @@
 package com.codecool.api.enums;
 
 public enum Food {
-    GRASS(0),
-    LEAVES(1),
-    MITES(4),
-    EARTHWORM(5);
+    GRASS(1),
+    WORM(2);
     
     public final int value;
     

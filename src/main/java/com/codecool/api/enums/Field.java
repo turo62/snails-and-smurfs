@@ -1,9 +1,8 @@
 package com.codecool.api.enums;
 
 public enum Field {
-    GRASS(0),
-    MARSH(1),
-    SAND(2);
+    GRASS(2),
+    MARSH(1);
     
     public final int value;
     

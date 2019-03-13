@@ -47,4 +47,8 @@ public class Snail {
     public int getRaceNo() {
         return raceNo;
     }
+    
+    public String toString() {
+        return "Name: " + getName() + " speed: " + getSpeed() + "  fatigue: " + getFatigability() + "% food: " + getFood().getValue() + " racefield: " + getField().getValue() + " number of races: " + getRaceNo();
+    }
 }
