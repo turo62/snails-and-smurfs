@@ -11,9 +11,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Snail putris = new Snail("Putris", 210, 2, Food.valueOf("EARTHWORM"), Field.MARSH, 0);
+        Snail putris = new Snail("Putris", 210, 1.5, Food.GRASS, Field.MARSH, 0);
         Main main = new Main();
-        putris.setFatigability(15);
+        /*putris.setFatigability(15); */
         System.out.println(main.getWelcomeString());
         System.out.println(putris);
         System.out.println(putris.getSpeed());

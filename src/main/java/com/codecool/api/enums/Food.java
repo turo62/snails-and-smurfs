@@ -4,7 +4,7 @@ public enum Food {
     GRASS(1),
     WORM(2);
     
-    public final int value;
+    private int value;
     
     Food(int value) {
         this.value = value;

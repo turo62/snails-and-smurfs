@@ -5,13 +5,13 @@ import com.codecool.api.enums.Food;
 
 public class Snail {
     private String name;
-    private int speed;
-    private int fatigability;
+    private double speed;
+    private double fatigability;
     private Food food;
     private Field field;
     private int raceNo = 0;
     
-    public Snail(String name, int speed, int fatigability, Food food, Field field, int raceNo) {
+    public Snail(String name, double speed, double fatigability, Food food, Field field, int raceNo) {
         this.name = name;
         this.speed = speed;
         this.fatigability = fatigability;
@@ -24,11 +24,11 @@ public class Snail {
         return name;
     }
     
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
     
-    public int getFatigability() {
+    public double getFatigability() {
         return fatigability;
     }
     
@@ -49,6 +49,6 @@ public class Snail {
     }
     
     public String toString() {
-        return "Name: " + getName() + " speed: " + getSpeed() + "  fatigue: " + getFatigability() + "% food: " + getFood().getValue() + " racefield: " + getField().getValue() + " number of races: " + getRaceNo();
+        return "Name: " + getName() + " speed: " + getSpeed() + " m/h  fatigue: " + getFatigability() + " % food: " + getFood().getValue() + " racefield: " + getField().getValue() + " number of races: " + getRaceNo();
     }
 }
