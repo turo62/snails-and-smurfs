@@ -7,16 +7,16 @@ import com.codecool.api.partakens.Smurf;
 import com.codecool.api.partakens.Snail;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Stable {
     private Snail[] snails;
     
-    public void LoadData() {
-        /*ArrayList<ArrayList<String>> snail = new ArrayList<ArrayList<String>>();
-        this.snail.HistoricalData.fileReading("/target/snails.csv");*/
-        <ArrayList<String>>snail = HistoricalData.fileReading("/target/snaildata.csv");
+    public void loadData() {
+        /*ArrayList<ArrayList<String>> horse = new ArrayList<ArrayList<String>>();
+        this.horse.HistoricalData.fileReading("/target/snails.csv");*/
+        String fileName = "/target/snaildata.csv";
+        HistoricalData HD = new HistoricalData();
+        ArrayList<String> snail = HD.fileReading(fileName);
         Snail[] snails = new Snail[snail.size()];
         
         for (int i = 0; i < snail.size(); i++) {
