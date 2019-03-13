@@ -2,7 +2,10 @@ package com.codecool;
 
 import com.codecool.api.enums.Field;
 import com.codecool.api.enums.Food;
+import com.codecool.api.partakens.HistoricalData;
 import com.codecool.api.partakens.Snail;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -19,3 +22,5 @@ public class Main {
         System.out.println(putris.getSpeed());
     }
 }
+
+
