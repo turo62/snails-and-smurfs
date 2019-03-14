@@ -29,9 +29,10 @@ public class Main {
             /*System.out.println(csCsCs);*/
             ArrayList<String> jockeyList = csCsCs.selectJockeys();
             ArrayList<Snail> horsesList = csCsCs.selectHorses();
-            printMyList(jockeyList);
+            /*printMyList(jockeyList);
             printMyHorses(horsesList);
-            /*csCsCs.printStable();*/
+            System.out.println(csCsCs.findSmurfWeight(jockeyList.get(2)));
+            csCsCs.printStable();*/
         } catch (FileNotFoundException f) {
             System.out.println(f);
         } catch (IOException i) {

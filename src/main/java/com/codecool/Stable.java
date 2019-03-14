@@ -105,4 +105,14 @@ public class Stable {
         
         return jockey;
     }
+    
+    public double findSmurfWeight(String name) {
+        for (Smurf smurf : smurfs) {
+            if (smurf.getName().equals(name)) {
+                return smurf.getWeight();
+            }
+        }
+        
+        return 0;
+    }
 }
