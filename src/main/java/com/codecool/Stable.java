@@ -9,28 +9,20 @@ import com.codecool.api.partakens.Snail;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Stable {
     
     private String name;
     private Snail[] snails;
     private Smurf[] smurfs;
+    public final int RACERS = 5;
     
     public Stable(String name, Snail[] snails, Smurf[] smurfs) {
         this.name = name;
         this.snails = snails;
         this.smurfs = smurfs;
     }
-    
-    /*private static class Racer {
-        Snail snail;
-        Smurf smurf;
-        
-        public Racer(Snail snail, Smurf smurf) {
-            this.snail = snail;
-            this.smurf = smurf;
-        }
-    }*/
     
     public Stable(String name, String snailsCsvPath, String smurfsCsvPath) throws IOException, FileNotFoundException {
         this.name = name;
@@ -79,4 +71,38 @@ public class Stable {
         }
     }
     
+    public int getRandom(int range) {
+        int random = new Random().nextInt(range);
+        return random;
+    }
+    
+    public ArrayList<Snail> selectHorses() {
+        ArrayList<Snail> horses = new ArrayList<>();
+        int range = snails.length;
+        
+        while (horses.size() < RACERS) {
+            int horseCode = getRandom(range);
+            Snail newSnail = snails[horseCode];
+            if (!horses.contains(newSnail)) {
+                horses.add(newSnail);
+            }
+        }
+        
+        return horses;
+    }
+    
+    public ArrayList<String> selectJockeys() {
+        ArrayList<String> jockey = new ArrayList<>();
+        int range = smurfs.length;
+        
+        while (jockey.size() < RACERS) {
+            int jockeyCode = getRandom(range);
+            String newSmurf = smurfs[jockeyCode].getName();
+            if (!jockey.contains(newSmurf)) {
+                jockey.add(newSmurf);
+            }
+        }
+        
+        return jockey;
+    }
 }

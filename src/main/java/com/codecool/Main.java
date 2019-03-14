@@ -3,6 +3,7 @@ package com.codecool;
 import com.codecool.api.enums.Field;
 import com.codecool.api.enums.Food;
 import com.codecool.api.partakens.HistoricalData;
+import com.codecool.api.partakens.Smurf;
 import com.codecool.api.partakens.Snail;
 
 import java.io.FileNotFoundException;
@@ -25,12 +26,30 @@ public class Main {
             /*System.out.println(putris);
             System.out.println(putris.getSpeed());*/
             Stable csCsCs = Stable.createLocal();
-            System.out.println(csCsCs);
-            csCsCs.printStable();
+            /*System.out.println(csCsCs);*/
+            ArrayList<String> jockeyList = csCsCs.selectJockeys();
+            ArrayList<Snail> horsesList = csCsCs.selectHorses();
+            printMyList(jockeyList);
+            printMyHorses(horsesList);
+            /*csCsCs.printStable();*/
         } catch (FileNotFoundException f) {
             System.out.println(f);
         } catch (IOException i) {
             System.out.println(i);
+        }
+    }
+    
+    public static void printMyList(ArrayList<String> jockeyList) {
+        int riders = jockeyList.size();
+        for (int i = 0; i < riders; i++) {
+            System.out.println(jockeyList.get(i));
+        }
+    }
+    
+    public static void printMyHorses(ArrayList<Snail> horsesList) {
+        int riders = horsesList.size();
+        for (int i = 0; i < riders; i++) {
+            System.out.println(horsesList.get(i));
         }
     }
 }
