@@ -1,9 +1,5 @@
 package com.codecool;
 
-import com.codecool.api.enums.Field;
-import com.codecool.api.enums.Food;
-import com.codecool.api.partakens.HistoricalData;
-import com.codecool.api.partakens.Smurf;
 import com.codecool.api.partakens.Snail;
 
 import java.io.FileNotFoundException;
@@ -29,10 +25,10 @@ public class Main {
             /*System.out.println(csCsCs);*/
             ArrayList<String> jockeyList = csCsCs.selectJockeys();
             ArrayList<Snail> horsesList = csCsCs.selectHorses();
-            /*printMyList(jockeyList);
+            printMyList(jockeyList);
             printMyHorses(horsesList);
             System.out.println(csCsCs.findSmurfWeight(jockeyList.get(2)));
-            csCsCs.printStable();*/
+            csCsCs.printStable();
         } catch (FileNotFoundException f) {
             System.out.println(f);
         } catch (IOException i) {

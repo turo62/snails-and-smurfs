@@ -2,5 +2,8 @@ package com.codecool.api.enums;
 
 public enum Food {
     GRASS,
-    WORM;
+    LEAVES,
+    ALGA,
+    SMALLWORM,
+    EARTHWORM;
 }

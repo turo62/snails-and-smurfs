@@ -1,4 +1,4 @@
-package com.codecool.api.partakens;
+package com.codecool;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.util.*;
 
 public class HistoricalData {
     
-    public static ArrayList<ArrayList<String>> fileReading(String fileName) throws IOException, FileNotFoundException {
+    public static ArrayList<ArrayList<String>> load(String fileName) throws IOException, FileNotFoundException {
         ArrayList<ArrayList<String>> obj = new ArrayList<ArrayList<String>>();
         FileInputStream is = new FileInputStream(fileName);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
