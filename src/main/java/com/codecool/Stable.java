@@ -7,10 +7,8 @@ import com.codecool.api.partakens.Snail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+import java.lang.*;
 
 /**
  * Represents a real stable, containing smurfs and snails doing racing.
@@ -26,6 +24,7 @@ public class Stable {
     int raceLength;
     HashMap<String, Snail> racers = new HashMap<>();
     ArrayList<String> result = new ArrayList<>();
+    List<Food> foodList = Arrays.asList(Food.values());
     
     /**
      * The constructor takes 3 arguments matching the stable's fields. Using this constructor initializes a complete stable.
@@ -240,19 +239,46 @@ public class Stable {
     }
     
     public void feeding(HashMap<String, Snail> racers) {
+    
+        int range = foodList.size();
+        Food actFood = foodList.get(getRandom(range));
+        
         for (int i = 0; i < racers.size(); i++) {
             Object key = racers.keySet().toArray()[i];
             Snail value = racers.get(key.toString());
-            double rate = findSmurfWeight(key.toString()) / value.getSize();
-            if (rate >= 5) {
-                value.setFatigability(100);
-            } else if (rate > 1 && rate < 5) {
-                value.setFatigability(70);
+            if (actFood.equals(value.getFood())) {
+                value.setFatigability(value.getFatigability() / 2);
+            } else {
+                value.setFatigability(value.getFatigability() * 2);
             }
         }
     }
     
     public ArrayList<String> run(HashMap<String, Snail> racers) {
+        ArrayList<Double> racingTime = new ArrayList<>();
+        ArrayList<Double> sortedTime = new ArrayList<>();
+        int length = setRaceLength();
+        setFittness(racers);
     
+        for (int i = 0; i < racers.size(); i++) {
+            Object key = racers.keySet().toArray()[i];
+            Snail value = racers.get(key.toString());
+            double actTime = length / (value.getSpeed() * Math.pow((1 - value.getFatigability()), value.getRaceNo() + 1));
+            racingTime.add(actTime);
+        }
+    
+        sortedTime = racingTime;
+        Collections.sort(sortedTime);
+        int j = 0;
+    
+        for (int i = 0; i < racers.size(); i++) {
+            Object key = racers.keySet().toArray()[i];
+            Snail value = racers.get(key.toString());
+            if (sortedTime.get(j) == racingTime.get(i)) {
+                result.add(value.getName());
+                j++;
+            }
+        }
+        return result;
     }
 }

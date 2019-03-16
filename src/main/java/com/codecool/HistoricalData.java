@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.io.FileWriter;
 
 public class HistoricalData {
+    private FileWriter writer;
     
-    public static ArrayList<ArrayList<String>> load(String fileName) throws IOException, FileNotFoundException {
+    public static ArrayList<ArrayList<String>> load(String fileName) throws FileNotFoundException, IOException {
         ArrayList<ArrayList<String>> obj = new ArrayList<ArrayList<String>>();
         FileInputStream is = new FileInputStream(fileName);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -30,4 +32,18 @@ public class HistoricalData {
         
         return obj;
     }
+    
+    public void generateData(ArrayList<String> result, String fileName) { //writes one simulated round to a file. We recommend the CSV format
+        try {
+            this.writer = new FileWriter(fileName, true);
+            for (String name : result) {
+                writer.write(name + ",");
+            }
+            writer.write("\r\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("File not found!");
+        }
+    }
+    
 }

@@ -22,7 +22,7 @@ public class Snail {
         this.raceNo = raceNo;
     }
     
-    public void setSpeed(int value) {
+    public void setSpeed(double value) {
         this.speed = value;
     }
     
