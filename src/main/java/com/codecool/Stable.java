@@ -22,8 +22,6 @@ public class Stable {
     private Smurf[] smurfs;
     public final int RACERS = 5;
     int raceLength;
-    HashMap<String, Snail> racers = new HashMap<>();
-    ArrayList<String> result = new ArrayList<>();
     List<Food> foodList = Arrays.asList(Food.values());
     
     /**
@@ -87,7 +85,7 @@ public class Stable {
      * @throws FileNotFoundException if the CSV paths that were supplied is not valid
      */
     public static Stable createLocal() throws IOException, FileNotFoundException {
-        return new Stable("CsCsCs (Csúcs Csigák Csapata)", "./target/snaildata.csv", "./target/smurfdata.csv");
+        return new Stable("CsCsCs (Csúcs Csigák Csapata)", "snaildata.csv", "smurfdata.csv");
     }
     
     public Snail[] getSnails() {
@@ -197,8 +195,8 @@ public class Stable {
     }
     
     /**
-     * Generates hashmap of racers.
-     * <p>
+     * Generates hashmap of racers. Assigns Smurfs to snials from selected lists.
+     *
      * Note: this is method-level comment
      *
      * @return hashmap of racers
@@ -206,10 +204,11 @@ public class Stable {
     public HashMap<String, Snail> getRacers() {
         ArrayList<String> jockey = selectJockeys();
         ArrayList<Snail> horses = selectHorses();
+        HashMap<String, Snail> racers = new HashMap<>();
         for (int i = 0; i < RACERS; i++) {
             racers.put(jockey.get(i), horses.get(i));
         }
-        
+    
         return racers;
     }
     
@@ -230,47 +229,60 @@ public class Stable {
             Object key = racers.keySet().toArray()[i];
             Snail value = racers.get(key.toString());
             double rate = findSmurfWeight(key.toString()) / value.getSize();
-            if (rate >= 5) {
+            if (rate >= 7) {
                 value.setFatigability(100);
-            } else if (rate > 1 && rate < 5) {
-                value.setFatigability(70);
+            } else if (rate > 1 && rate < 7) {
+                value.setFatigability(60);
             }
         }
     }
     
-    public void feeding(HashMap<String, Snail> racers) {
+    public void feeding() {
+        
+        Snail[] snails = getSnails();
     
         int range = foodList.size();
         Food actFood = foodList.get(getRandom(range));
         
-        for (int i = 0; i < racers.size(); i++) {
-            Object key = racers.keySet().toArray()[i];
-            Snail value = racers.get(key.toString());
-            if (actFood.equals(value.getFood())) {
-                value.setFatigability(value.getFatigability() / 2);
+        for (int i = 0; i < snails.length; i++) {
+            if (actFood.equals(snails[i].getFood())) {
+                snails[i].setFatigability(snails[i].getFatigability() / 2);
             } else {
-                value.setFatigability(value.getFatigability() * 2);
+                double temp = snails[i].getFatigability() * 1.1;
+                if (temp > 100) {
+                    snails[i].setFatigability(90);
+                } else {
+                    snails[i].setFatigability(snails[i].getFatigability() * 1.1);
+                }
             }
         }
     }
     
+    /**
+     * Generates a single race run.
+     *
+     * @param racers the hashmap of selected racers.
+     * @return arraylist of snails name in the order of winning.
+     */
     public ArrayList<String> run(HashMap<String, Snail> racers) {
         ArrayList<Double> racingTime = new ArrayList<>();
         ArrayList<Double> sortedTime = new ArrayList<>();
         int length = setRaceLength();
+        ArrayList<String> result = new ArrayList<>();
+        
         setFittness(racers);
-    
+        
         for (int i = 0; i < racers.size(); i++) {
             Object key = racers.keySet().toArray()[i];
             Snail value = racers.get(key.toString());
-            double actTime = length / (value.getSpeed() * Math.pow((1 - value.getFatigability()), value.getRaceNo() + 1));
+            double actTime = length / (value.getSpeed() * Math.pow((1 - value.getFatigability() / 100), (value.getRaceNo() + 1)));
             racingTime.add(actTime);
         }
-    
+        
         sortedTime = racingTime;
         Collections.sort(sortedTime);
         int j = 0;
-    
+        
         for (int i = 0; i < racers.size(); i++) {
             Object key = racers.keySet().toArray()[i];
             Snail value = racers.get(key.toString());
@@ -279,6 +291,7 @@ public class Stable {
                 j++;
             }
         }
+        
         return result;
     }
 }
